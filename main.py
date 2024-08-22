@@ -3,8 +3,8 @@ import telebot
 # Инициализируем константу-словарь для периодов напоминаний
 PERIODS = {'h': 'часов', 'd': 'дней', 'w': 'недель', 'm': 'месяцев'}
 
-# имя бота: reminder_WB_bot
-bot = telebot.TeleBot('%token%')
+# имя бота: just_1000_reminder_bot
+bot = telebot.TeleBot('7529722094:AAFXllzI_SMvSRBVCUikPMN9WWCcJdV_VXY')
 
 # Инициализируем переменные для срока напоминания и задачи
 time = 0
@@ -20,7 +20,7 @@ def get_deadline(message):
     Gthy
     '''
     deadline = message.text.split()[-1]
-    if message.text.startswith('@reminder_WB_bot ctrl') and deadline[-1] in PERIODS.keys() and deadline[:-1].isdigit():
+    if message.text.startswith('@just_1000_reminder_bot ctrl') and deadline[-1] in PERIODS.keys() and deadline[:-1].isdigit():
         global time
         global period
         time = int(deadline[:-1])
@@ -31,7 +31,7 @@ def get_deadline(message):
 
     elif message.text == "/help":
         bot.send_message(
-            message.from_user.id, "Напиши в формате @reminder_WB_bot ctrl 5d, где 5d срок напоминания, 5 - интервал, d - продолжительность в часах, днях, неделях, месяцах (h, d, w, m)")
+            message.from_user.id, "Напиши в формате @just_1000_reminder_bot ctrl 5d, где 5d срок напоминания, 5 - интервал, d - продолжительность в часах, днях, неделях, месяцах (h, d, w, m)")
     else:
         bot.send_message(message.from_user.id,
                          "Я тебя не понимаю. Напиши /help.")
@@ -57,7 +57,8 @@ def get_task(message):
         key_no = telebot.types.InlineKeyboardButton(
             text='Нет', callback_data='no')
         keyboard.add(key_no)
-        question = f'Напомнить тебе о задаче {task} через {time} {PERIODS[period]}?'
+        question = f'Напомнить тебе о задаче {
+            task} через {time} {PERIODS[period]}?'
         bot.send_message(message.from_user.id, text=question,
                          reply_markup=keyboard)
 
